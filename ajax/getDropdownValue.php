@@ -46,5 +46,11 @@ if (strpos($_SERVER['PHP_SELF'], "getDropdownValue.php")) {
     die("Sorry. You can't access this file directly");
 }
 
-Session::checkLoginUser();
+if (!isset($_POST['allow_anonymous'])) {
+   Session::checkLoginUser();
+} else if (!$_POST['allow_anonymous']) {
+   Session::checkLoginUser();
+}
+
+#Session::checkLoginUser();
 echo Dropdown::getDropdownValue($_POST);

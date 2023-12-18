@@ -6515,7 +6515,7 @@ class CommonDBTM extends CommonGLPI
 
         $menus = is_array($menus) ? $menus : [];
 
-        // Check current interface
+// Check current interface
         $interface = Session::getCurrentInterface();
         if ($interface !== false && isset($menus[$interface])) {
             // Load specific menus for this interface

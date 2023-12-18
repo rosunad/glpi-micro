@@ -643,6 +643,7 @@ class CommonGLPI implements CommonGLPIInterface
      **/
     public static function displayStandardTab(CommonGLPI $item, $tab, $withtemplate = 0, $options = [])
     {
+echo var_dump($item);
         switch ($tab) {
            // All tab
             case -1:
@@ -673,7 +674,7 @@ class CommonGLPI implements CommonGLPIInterface
                 }
 
                 $options['withtemplate'] = $withtemplate;
-
+                
                 if ($tabnum == 'main') {
                     /** @var CommonDBTM $item */
                     Plugin::doHook(Hooks::PRE_SHOW_ITEM, ['item' => $item, 'options' => &$options]);
@@ -924,6 +925,7 @@ class CommonGLPI implements CommonGLPIInterface
                                           "&amp;_glpi_tab=-1&amp;id=$ID$extraparamhtml"
                 ];
             }
+
 
             Ajax::createTabs(
                 'tabspanel',

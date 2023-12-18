@@ -30,7 +30,7 @@
  #
  # ---------------------------------------------------------------------
  #}
-
+{% import 'components/form/fields_macros.html.twig' as fields %}
 {% extends 'layout/page_card_notlogged.html.twig' %}
 
 {% block content_block %}
@@ -41,7 +41,7 @@
 
       <h2 class="mb-4">{{ __('Helpdesk reporting form') }}</h2>
 
-      <div class="mb-3">
+     <div class="mb-3">
          <label class="form-label text-muted">{{ __('Select an urgency level') }}</label>
          <select name="urgency" class="form-select">
             <option value="5">{{ _x('urgency', 'Very high') }}</option>
@@ -51,6 +51,27 @@
             <option value="1">{{ _x('urgency', 'Very low') }}</option>
          </select>
       </div>
+
+    <div class="accordion open accordion-flush" id="itil-data">
+       {% set actors_show = headers_states['actors'] is not defined or headers_states['actors'] == "true" ? true : false %}
+       <div class="accordion-item">
+          <h2 class="accordion-header" id="heading-actor" title="{{__('Actors') }}"  data-bs-toggle="tooltip">
+             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#actors" aria-expanded="true" aria-controls="actors">
+                <i class="ti ti-users me-1"></i>
+                <span class="item-title">
+                   {{__('Actors') }}
+                </span>
+                <span class="badge bg-secondary ms-2">
+                   {{ item.countActors() }}
+                </span>
+             </button>
+          </h2>
+          <div id="actors" class="accordion-collapse collapse" aria-labelledby="heading-actor">
+             <div class="accordion-body accordion-actors row m-0 mt-n2">
+             </div>
+          </div>
+       </div>
+    </div>
 
       <span class="text-muted">{{ __('Describe your issue') }}</span>
       <fieldset class="form-fieldset">

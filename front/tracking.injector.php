@@ -52,6 +52,15 @@ if (
 }
 
 $track = new Ticket();
+$user = new User();
+
+if(isset($_POST['reqEmail'])) {
+   if($user->getFromDBbyEmail($_POST['reqEmail'])) {
+      $_POST['users_id_recipient'] = $user->fields['id'];
+      $_POST['_users_id_requester'] = $user->fields['id'];
+   }
+}
+
 
 // Security check
 if (empty($_POST) || (count($_POST) == 0)) {
